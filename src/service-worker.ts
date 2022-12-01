@@ -83,7 +83,8 @@ const cacheName = 'mahsa-cache'
 self.addEventListener('install', (event) => {
   console.log('installed')
   event.waitUntil(
-    caches.open(cacheName).then((cache) => cache.addAll(['/public/logo512.png','/public/favicon.ico', '/public/logo192.png']))
+    caches.open(cacheName).then((cache) => cache.addAll(['/public/logo512.png','/public/favicon.ico', '/public/logo192.png',
+     '/src/App.tsx', '/src/App.css', '/src/index.tsx', '/src/index.css',]))
   )
 });
 
