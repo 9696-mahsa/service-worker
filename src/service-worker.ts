@@ -78,3 +78,39 @@ self.addEventListener('message', (event) => {
 });
 
 // Any other custom service worker logic can go here.
+
+const cacheName = 'mahsa-cache'
+self.addEventListener('install', (event) => {
+  console.log('installed')
+  event.waitUntil(
+    caches.open(cacheName).then((cache) => cache.addAll(['/public/logo512.png','/public/favicon.ico', '/public/logo192.png']))
+  )
+});
+
+self.addEventListener('activate', (event) => {
+  console.log('activate')
+  // const url = "https://jsonplaceholder.typicode.com/posts";
+  // fetch(url).then((res) => { res.json().then((result)=> 
+  //   {
+  //     const data = new Response(JSON.stringify(result));
+  //     event.waitUntil(
+  //       caches.open(cacheName).then((cache) => cache.put(url , data))
+  //     )
+  //   })})
+  
+});
+
+self.addEventListener('fetch', (event) => {
+  console.log('fetch   intercepted a http request ' , event.request)
+
+  event.respondWith(
+    caches.match(event.request).then((res) => {
+      if (res) return res;
+      return fetch(event.request);
+    })
+  )
+});
+
+self.addEventListener('message', (event) => {
+  console.log('message')
+});
