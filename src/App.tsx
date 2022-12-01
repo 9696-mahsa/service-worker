@@ -10,7 +10,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
-          Hi...
+          Hi... I'm a PWA ;)
         </p>
       </header>
     </div>
